@@ -1,0 +1,123 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Welcome to the math quiz. Enter your name:");
+        Scanner wewe = new Scanner(System.in);
+        String fileName;
+        fileName = wewe.nextLine() + "-answers.txt";
+        try (FileWriter output = new FileWriter(fileName, true)) {
+
+        int result = 0;
+        int num1 = (int) (Math.random() * 100 + 1);
+        int num2 = (int) (Math.random() * 100 + 1);
+        int operator = (int) Math.floor(Math.random() * (4 - 1 + 1) + 1);
+
+        for (int x = 1; x < 6; x++) {
+
+
+            operator = (int) Math.floor(Math.random() * (4) + 1);
+            operator = (int) Math.floor(Math.random() * (4) + 1);
+
+            switch (operator) {
+                case 1:
+                    result = addition(num1, num2);
+                    System.out.println("Question " + x + ": " + num1 + " + " + num2);
+
+                    System.out.println("Guess:");
+                    int yourAnswer = wewe.nextInt();
+                    if(yourAnswer == result){
+                        output.write("Question " + x + ": " + num1 + " + " + num2 + " Guess: "+ yourAnswer + " right" + "\n");
+                    }
+                    else {
+                        output.write("Question " + x + ": " + num1 + " + " + num2 + " Guess: "+ yourAnswer + " wrong" + "\n");
+                    }
+                    num1 = (int) (Math.random() * 100 + 1);
+                    num2 = (int) (Math.random() * 100 + 1);
+                    break;
+
+                case 2:
+                    result = subtraction(num1, num2);
+                    System.out.println("Question " + x + ": " + num1 + " - " + num2);
+
+                    System.out.println("Guess:");
+                    yourAnswer = wewe.nextInt();
+                    if(yourAnswer == result){
+                        output.write("Question " + x + ": " + num1 + " - " + num2 + " Guess: "+ yourAnswer + " right" + "\n");
+                    }
+                    else {
+                        output.write("Question " + x + ": " + num1 + " - " + num2 + " Guess: "+ yourAnswer + " wrong" + "\n");
+                    }
+                    num1 = (int) (Math.random() * 100 + 1);
+                    num2 = (int) (Math.random() * 100 + 1);
+                    break;
+
+                case 3:
+
+                    num1 = (int) (Math.random() * 10 + 1);
+                    num2 = (int) (Math.random() * 10 + 1);
+
+                    result = multiplication(num1, num2);
+
+                    System.out.println("Question " + x + ": " + num1 + " * " + num2);
+
+                    System.out.println("Guess:");
+                    yourAnswer = wewe.nextInt();
+                    if(yourAnswer == result){
+                        output.write("Question " + x + ": " + num1 + " * " + num2 + " Guess: "+ yourAnswer + " right" + "\n");
+                    }
+                    else {
+                        output.write("Question " + x + ": " + num1 + " * " + num2 + " Guess: "+ yourAnswer + " wrong" + "\n");
+                    }
+
+                    num1 = (int) (Math.random() * 100 + 1);
+                    num2 = (int) (Math.random() * 100 + 1);
+                    break;
+
+                case 4:
+                    if (num1 % num2 != 0) {
+                        while (num1 % num2 != 0) {
+                            num1 = (int) (Math.random() * 100 + 1);
+                            num2 = (int) (Math.random() * 100 + 1);
+                        }
+                        result = division(num1, num2);
+                        System.out.println("Question " + x + ": " + num1 + " / " + num2);
+                        System.out.println("Guess:");
+                        yourAnswer = wewe.nextInt();
+                        if(yourAnswer == result){
+                            output.write("Question " + x + ": " + num1 + " / " + num2 + " Guess: "+ yourAnswer + " right" + "\n");
+                        }
+                        else {
+                            output.write("Question " + x + ": " + num1 + " / " + num2 + " Guess: "+ yourAnswer + " wrong" + "\n");
+                        }
+
+                        num1 = (int) (Math.random() * 100 + 1);
+                        num2 = (int) (Math.random() * 100 + 1);
+
+                    }
+                    break;
+            }
+        }
+        }catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+
+    }
+        public static int addition ( int a, int b){
+            return a + b;
+        }
+
+        public static int subtraction ( int c, int d){
+            return c - d;
+        }
+
+        public static int multiplication ( int a, int b){
+            return a * b;
+        }
+
+        public static int division ( int a, int b){
+            return a / b;
+        }
+
+}
